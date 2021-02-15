@@ -34,46 +34,27 @@ function reset() {
 }
 
 function writeToLog(ev, val, monsterHealth, playerHealth) {
-    let logEntry;
-    if (ev === LOG_EVENT_PLAYER_ATTACK) {
-        logEntry = {
-            event: ev,
-            value: val,
-            target: "MONSTER",
-            finalMonsterHealth: monsterHealth,
-            finalPlaterHealth: playerHealth,
-        };
-    } else if (ev === LOG_EVENT_PLAYER_STRONG_ATTACK) {
-        logEntry = {
-            event: ev,
-            value: val,
-            target: "MONSTER",
-            finalMonsterHealth: monsterHealth,
-            finalPlaterHealth: playerHealth,
-        };
-    } else if (ev === LOG_EVENT_PLAYER_HEAL) {
-        logEntry = {
-            event: ev,
-            value: val,
-            target: "PLAYER",
-            finalMonsterHealth: monsterHealth,
-            finalPlaterHealth: playerHealth,
-        };
-    } else if (ev === LOG_EVENT_MONSTER_ATTACK) {
-        logEntry = {
-            event: ev,
-            value: val,
-            target: "PLAYER",
-            finalMonsterHealth: monsterHealth,
-            finalPlaterHealth: playerHealth,
-        };
-    } else if (ev === LOG_EVENT_GAME_OVER) {
-        logEntry = {
-            event: ev,
-            value: val,
-            finalMonsterHealth: monsterHealth,
-            finalPlaterHealth: playerHealth,
-        };
+    let logEntry = {
+        event: ev,
+        value: val,
+        finalMonsterHealth: monsterHealth,
+        finalPlaterHealth: playerHealth,
+    };
+    switch (ev) {
+        case LOG_EVENT_PLAYER_ATTACK:
+            logEntry.target = "MONSTER";
+            break;
+        case LOG_EVENT_PLAYER_STRONG_ATTACK:
+            logEntry.target = "MONSTER";
+            break;
+        case LOG_EVENT_PLAYER_HEAL:
+            logEntry.target = "PLAYER";
+            break;
+        case LOG_EVENT_MONSTER_ATTACK:
+            logEntry.target = "PLAYER";
+            break;
+        default:
+            logEntry = {};
     }
     battleLog.push(logEntry);
 }
