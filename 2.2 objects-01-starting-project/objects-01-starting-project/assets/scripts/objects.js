@@ -1,5 +1,10 @@
+const movieList = document.getElementById("movie-list");
+
+movieList.style.backgroundColor = "red";
+movieList.style.display = "block";
+
 let person = {
-    name: "amir",
+    "first name": "amir",
     age: 30,
     hobbies: ["Sports", "Cooking"],
     greet: function () {
@@ -13,6 +18,6 @@ delete person.age;
 // person.age = null;
 person.isAdmin = true;
 
-console.log(person);
+console.log(person["first name"]);
 
 // person.greet();
